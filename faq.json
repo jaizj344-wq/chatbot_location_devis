@@ -1,0 +1,37 @@
+[
+  {
+    "question": "Quel est le prix total de la location ?",
+    "mots_cles": ["location", "tarif", "cout", "coût", "payer", "total"],
+    "reponse": "Le prix total TTC de la location est indiqué dans le devis transmis avant la réservation."
+  },
+  {
+    "question": "Quel est le montant de la caution ?",
+    "mots_cles": ["caution", "garantie", "depot", "dépôt"],
+    "reponse": "La caution demandée est de 1000€. Elle est bloquée sur votre carte bancaire et restituée après vérification du véhicule."
+  },
+  {
+    "question": "Quel carburant utiliser ?",
+    "mots_cles": ["carburant", "essence", "diesel", "gazole", "sp95", "sp98", "e10", "roule"],
+    "reponse": "Le type de carburant à utiliser est indiqué sur le véhicule ou dans le contrat de location."
+  },
+  {
+    "question": "Quel est le prix du plein ?",
+    "mots_cles": ["plein", "faire le plein", "prix du plein", "combien coute un plein"],
+    "reponse": "Le prix du plein varie selon le véhicule et le prix du carburant au moment du remplissage."
+  },
+  {
+    "question": "Quel est le kilométrage inclus ?",
+    "mots_cles": ["kilometrage", "kilométrage", "km", "kilometre", "kilomètre"],
+    "reponse": "200 km par jour sont inclus. Les kilomètres supplémentaires sont facturés selon le contrat."
+  },
+  {
+    "question": "Quels documents faut-il fournir ?",
+    "mots_cles": ["documents", "document", "papier", "papiers", "permis", "identite", "identité"],
+    "reponse": "Pour louer un véhicule, vous devez présenter votre permis de conduire et une pièce d'identité."
+  },
+  {
+    "question": "Quel âge faut-il avoir pour louer ?",
+    "mots_cles": ["age", "âge", "jeune", "minimum"],
+    "reponse": "L'âge minimum requis est de 18 ans avec un permis valide."
+  }
+]

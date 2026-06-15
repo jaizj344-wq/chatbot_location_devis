@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Location Véhicules</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: radial-gradient(circle at top, #2e1065, #050505);
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            width: 430px;
+            height: 620px;
+            margin: 35px auto;
+            background: #0b0b0f;
+            border-radius: 22px;
+            border: 1px solid #7c3aed;
+            box-shadow: 0 0 35px rgba(124, 58, 237, 0.45);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(90deg, #050505, #4c1d95);
+            color: white;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .status {
+            font-size: 13px;
+            color: #c4b5fd;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #09090b;
+        }
+
+        .message {
+            width: fit-content;
+            max-width: 78%;
+            padding: 11px 15px;
+            margin: 9px 0;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 16px;
+            word-wrap: break-word;
+            white-space: pre-line;
+        }
+
+        .user {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot {
+            background: #18181b;
+            color: white;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #7c3aed;
+        }
+
+        .typing-box {
+            width: 88px;
+            min-width: 88px;
+            height: 42px;
+            margin: 9px 0;
+            border-radius: 18px;
+            background: #18181b;
+            border: 1px solid #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .typing-dots span {
+            animation: blink 1.2s infinite;
+            font-size: 20px;
+            line-height: 1;
+            color: #c4b5fd;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: #d8b4fe;
+        }
+
+        .devis-button-zone {
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #2e1065;
+            background: #0b0b0f;
+        }
+
+        .devis-button {
+            width: 90%;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-top: 1px solid #2e1065;
+            background: #0b0b0f;
+        }
+
+        input {
+            flex: 1;
+            padding: 13px 16px;
+            background: #111113;
+            color: white;
+            border: 1px solid #7c3aed;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        button.send-button {
+            margin-left: 8px;
+            width: 46px;
+            height: 46px;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            text-align: center;
+            color: #a78bfa;
+            padding-bottom: 8px;
+            background: #0b0b0f;
+        }
+
+        .login-box {
+            flex: 1;
+            padding: 20px;
+            background: #09090b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .login-title {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .login-subtitle {
+            color: #c4b5fd;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .login-error {
+            color: #ff4d4d;
+            text-align: center;
+            font-weight: 700;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .chat-container {
+                width: 95%;
+                height: 90vh;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        <div class="avatar">S</div>
+        <div>
+            <div class="name">Support Location Véhicules</div>
+            <div class="status">Réponse instantanée • 24h/24</div>
+        </div>
+    </div>
+
+    <div id="loginPage" class="login-box">
+        <div class="login-title">Accès sécurisé</div>
+        <div class="login-subtitle">Veuillez entrer le mot de passe pour accéder à la démonstration.</div>
+
+        <div class="input-area" style="border-top: none;">
+            <input type="password" id="passwordInput" placeholder="Mot de passe">
+            <button class="send-button" onclick="checkPassword()">➤</button>
+        </div>
+
+        <div id="loginError" class="login-error">❌ Mot de passe incorrect</div>
+    </div>
+
+    <div id="chatPage" class="hidden" style="flex: 1; display: none; flex-direction: column; min-height: 0;">
+        <div class="chat-box" id="chatBox">
+            <div class="message bot">
+Bienvenue.
+
+Je suis Kevin, votre assistant virtuel.
+Je suis à votre disposition pour répondre à toutes vos questions concernant la location du véhicule.
+            </div>
+        </div>
+
+        <div class="devis-button-zone">
+            <button class="devis-button" onclick="demarrerDevis()">📄 Obtenir un devis</button>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="message" placeholder="Écrivez votre message...">
+            <button class="send-button" onclick="sendMessage()">➤</button>
+        </div>
+
+        <div class="footer-note">
+            Appuyez sur Entrée pour envoyer votre message
+        </div>
+    </div>
+
+</div>
+
+<script>
+let input = null;
+let chatBox = null;
+
+let modeDevis = false;
+let etapeDevis = null;
+
+let donneesDevis = {
+    voiture: "",
+    jours: "",
+    livraison: ""
+};
+
+function attendre(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function checkPassword() {
+    const password = document.getElementById("passwordInput").value.trim();
+    const error = document.getElementById("loginError");
+
+    const response = await fetch("/verifier-mdp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("chatPage").style.display = "flex";
+
+        input = document.getElementById("message");
+        chatBox = document.getElementById("chatBox");
+
+        input.focus();
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    } else {
+        error.style.display = "block";
+    }
+}
+
+document.getElementById("passwordInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+});
+
+async function demarrerDevis() {
+    modeDevis = true;
+    etapeDevis = "voiture";
+
+    donneesDevis = {
+        voiture: "",
+        jours: "",
+        livraison: ""
+    };
+
+    addTypingMessage();
+    await attendre(1500);
+    removeTypingMessage();
+
+    addMessage("Très bien. Pour établir votre devis, quel véhicule souhaitez-vous louer ?\n\nVéhicules disponibles :\n• RS3\n• A45S\n• Golf 8R", "bot");
+}
+
+async function sendMessage() {
+    let message = input.value.trim();
+
+    if (message === "") return;
+
+    addMessage(message, "user");
+    input.value = "";
+
+    if (modeDevis) {
+        gererDevis(message);
+        return;
+    }
+
+    addTypingMessage();
+
+    try {
+        let response = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: message })
+        });
+
+        let data = await response.json();
+
+        await attendre(1500);
+        removeTypingMessage();
+        addMessage(data.reply, "bot");
+    } catch {
+        await attendre(1500);
+        removeTypingMessage();
+        addMessage("Une erreur est survenue. Merci de réessayer.", "bot");
+    }
+}
+
+async function gererDevis(message) {
+    if (etapeDevis === "voiture") {
+        donneesDevis.voiture = message.toLowerCase().replaceAll(" ", "");
+        etapeDevis = "jours";
+
+        addTypingMessage();
+        await attendre(1500);
+        removeTypingMessage();
+
+        addMessage("Parfait. Combien de jours souhaitez-vous louer le véhicule ?", "bot");
+        return;
+    }
+
+    if (etapeDevis === "jours") {
+        donneesDevis.jours = message;
+        etapeDevis = "livraison";
+
+        addTypingMessage();
+        await attendre(1500);
+        removeTypingMessage();
+
+        addMessage("Souhaitez-vous une livraison du véhicule ? Répondez par oui ou non.", "bot");
+        return;
+    }
+
+    if (etapeDevis === "livraison") {
+        donneesDevis.livraison = message.toLowerCase();
+
+        addTypingMessage();
+
+        try {
+            let response = await fetch("/devis", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    voiture: donneesDevis.voiture,
+                    jours: donneesDevis.jours,
+                    livraison: donneesDevis.livraison
+                })
+            });
+
+            let data = await response.json();
+
+            await attendre(1500);
+            removeTypingMessage();
+
+            if (data.error) {
+                addMessage(data.error, "bot");
+            } else {
+                addMessage(data.devis, "bot");
+            }
+
+        } catch {
+            await attendre(1500);
+            removeTypingMessage();
+            addMessage("Une erreur est survenue pendant la génération du devis.", "bot");
+        }
+
+        modeDevis = false;
+        etapeDevis = null;
+    }
+}
+
+function escapeHtml(text) {
+    return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+}
+
+function formatPrices(text) {
+    let safeText = escapeHtml(text);
+    return safeText.replace(/(\d+(?:[.,]\d+)?\s?€)/g, '<span class="price">$1</span>');
+}
+
+function addMessage(text, sender) {
+    let msg = document.createElement("div");
+    msg.classList.add("message", sender);
+
+    if (sender === "bot") {
+        msg.innerHTML = formatPrices(text);
+    } else {
+        msg.innerText = text;
+    }
+
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function addTypingMessage() {
+    removeTypingMessage();
+
+    let msg = document.createElement("div");
+    msg.classList.add("typing-box");
+    msg.id = "typing";
+
+    msg.innerHTML = `
+        <div class="typing-dots">
+            <span>•</span>
+            <span>•</span>
+            <span>•</span>
+        </div>
+    `;
+
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function removeTypingMessage() {
+    let typing = document.getElementById("typing");
+    if (typing) typing.remove();
+}
+</script>
+
+</body>
+</html>

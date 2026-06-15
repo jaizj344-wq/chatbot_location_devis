@@ -1,0 +1,20 @@
+{
+  "rs3": {
+    "nom": "RS3",
+    "prix_jour": 120,
+    "caution": 1000,
+    "kilometrage": "300 km/jour + 0,25€/km supplémentaire"
+  },
+  "a45s": {
+    "nom": "A45S",
+    "prix_jour": 130,
+    "caution": 1200,
+    "kilometrage": "300 km/jour + 0,25€/km supplémentaire"
+  },
+  "golf8r": {
+    "nom": "Golf 8R",
+    "prix_jour": 90,
+    "caution": 900,
+    "kilometrage": "300 km/jour + 0,25€/km supplémentaire"
+  }
+}
