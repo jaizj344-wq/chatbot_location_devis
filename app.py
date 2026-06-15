@@ -6,7 +6,7 @@ import unicodedata
 
 app = Flask(__name__)
 
-MOT_DE_PASSE = "LV-2026"
+MOT_DE_PASSE = "LVD-2026"
 
 with open("faq.json", "r", encoding="utf-8") as f:
     faq = json.load(f)
