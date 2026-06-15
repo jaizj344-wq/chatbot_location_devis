@@ -175,6 +175,7 @@
             outline: none;
             font-size: 16px;
             font-family: 'Cormorant Garamond', serif;
+            min-width: 0;
         }
 
         input::placeholder {
@@ -191,6 +192,7 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 17px;
+            flex-shrink: 0;
         }
 
         .footer-note {
@@ -227,7 +229,10 @@
         .login-error {
             color: #ff4d4d;
             text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
             font-weight: 700;
+            letter-spacing: 0.5px;
             display: none;
         }
 
@@ -263,10 +268,15 @@
 
         <div class="input-area" style="border-top: none;">
             <input type="password" id="passwordInput" placeholder="Mot de passe">
-            <button class="send-button" onclick="checkPassword()">➤</button>
+
+            <button type="button" class="send-button" onclick="togglePassword()">👁</button>
+
+            <button type="button" class="send-button" onclick="checkPassword()">➤</button>
         </div>
 
-        <div id="loginError" class="login-error">❌ Mot de passe incorrect</div>
+        <div id="loginError" class="login-error">
+            Mot de passe incorrect
+        </div>
     </div>
 
     <div id="chatPage" class="hidden" style="flex: 1; display: none; flex-direction: column; min-height: 0;">
@@ -310,6 +320,16 @@ let donneesDevis = {
 
 function attendre(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function togglePassword() {
+    const passwordInput = document.getElementById("passwordInput");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
 }
 
 async function checkPassword() {
