@@ -1,7 +1,7 @@
 [
   {
     "question": "Quel est le prix total de la location ?",
-    "mots_cles": ["location","rs3", "Golf8r", "A45s", "tarif", "cout", "coût", "payer", "total"],
+    "mots_cles": ["location","rs3", "Golf8r","Golf 8r", "A45s", "tarif", "cout", "coût", "payer", "total"],
     "reponse": "Le prix total TTC de la location est indiqué dans le devis."
   },
   {
