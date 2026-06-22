@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "Chatbot_Location_Premium",
+			"path": "../../Chatbot_Location_Premium"
+		},
+		{
+			"name": "Chatbot_Location_Devis",
+			"path": "../../Chatbot_Location_Devis"
+		},
+		{
+			"name": "Chatbot_Location",
+			"path": "../../Chatbot_Location"
+		},
+		{
+			"path": "../../IA PS"
+		}
+	],
+	"settings": {}
+}
